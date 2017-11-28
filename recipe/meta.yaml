@@ -1,8 +1,8 @@
 {% set name = "aiohttp" %}
-{% set version = "2.2.5" %}
+{% set version = "2.3.3" %}
 {% set file_ext = "tar.gz" %}
 {% set hash_type = "sha256" %}
-{% set hash_value = "af5bfdd164256118a0a306b3f7046e63207d1f8cba73a67dcc0bd858dcfcd3bc" %}
+{% set hash_value = "0a2e33e90560dacb819b095b9d9611597925d75d1b93dd9490055d3826d98a82" %}
 
 package:
   name: {{ name|lower }}
@@ -25,7 +25,7 @@ requirements:
   run:
     - python
     - chardet
-    - multidict >=2.1.4
+    - multidict >=3.0.0
     - async-timeout >=1.2.0
     - yarl >=0.11
 
