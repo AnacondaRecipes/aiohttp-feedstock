@@ -1,8 +1,8 @@
 {% set name = "aiohttp" %}
-{% set version = "2.3.3" %}
+{% set version = "2.3.9" %}
 {% set file_ext = "tar.gz" %}
 {% set hash_type = "sha256" %}
-{% set hash_value = "0a2e33e90560dacb819b095b9d9611597925d75d1b93dd9490055d3826d98a82" %}
+{% set hash_value = "6003bed78dc591d31bd89ef16e630a1c4fd97a3cd17b975ec945c0f46d6fc881" %}
 
 package:
   name: {{ name|lower }}
