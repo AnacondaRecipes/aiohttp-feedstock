@@ -27,9 +27,9 @@ requirements:
     - attrs >=17.3.0
     - chardet >=2.0,<4.0
     - idna_ssl >=1.0  # [py<37]
-    - multidict >=4.5,<5.0
+    - multidict >=4.5,<7.0
     - typing-extensions >=3.6.5
-    - yarl >=1.0,<1.6.0
+    - yarl >=1.0,<2
 
 test:
   imports:
