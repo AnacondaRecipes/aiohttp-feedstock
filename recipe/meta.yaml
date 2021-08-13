@@ -10,7 +10,7 @@ source:
   sha256: 5d84ecc73141d0a0d61ece0742bb7ff5751b0657dab8405f899d3ceb104cc7de
 
 build:
-  number: 1
+  number: 2
   script: {{ PYTHON }} -m pip install . -vv
   skip: true  # [py2k]
 
@@ -23,9 +23,9 @@ requirements:
     - cython
   run:
     - python
-    - async-timeout <4.0,>=3.0
+    - async-timeout >=3.0,<4.0
     - attrs >=17.3.0
-    - chardet >=2.0,<4.0
+    - chardet >=2.0,<5.0
     - idna_ssl >=1.0  # [py<37]
     - multidict >=4.5,<7.0
     - typing-extensions >=3.6.5
