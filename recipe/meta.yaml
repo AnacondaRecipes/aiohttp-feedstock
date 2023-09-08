@@ -10,8 +10,8 @@ source:
   sha256: b9552ec52cc147dbf1944ac7ac98af7602e51ea2dcd076ed194ca3c0d1c7d0bc
 
 build:
-  skip: true  # [py<38]
-  script: {{ PYTHON }} -m pip install . -vv
+  skip: true  # [py<36]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
 requirements:
@@ -25,9 +25,14 @@ requirements:
     - wheel
   run:
     - python
+    - attrs >=17.3.0
+    - charset-normalizer >=2.0,<4.0
     - multidict >=4.5,<7.0
-    - async-timeout >=4.0,<5.0  # [py<311]
+    - async-timeout >=4.0.0a3,<5.0
+    - asynctest ==0.13.0  # [py<38]
     - yarl >=1.0,<2.0
+    - idna_ssl >=1.0  # [py<37]
+    - typing-extensions >=3.7.4  # [py<38]
     - frozenlist >=1.1.1
     - aiosignal >=1.1.2
 
