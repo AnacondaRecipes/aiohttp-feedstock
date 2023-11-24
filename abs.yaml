@@ -1,0 +1,6 @@
+aggregate_branch: 3.12
+
+channels:
+- https://staging.continuum.io/prefect/fs/re-assert-feedstock/pr1/9c2872f
+- https://staging.continuum.io/prefect/fs/multidict-feedstock/pr7/91f99ab
+- https://staging.continuum.io/prefect/fs/yarl-feedstock/pr4/3d50762
