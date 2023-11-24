@@ -73,7 +73,10 @@ test:
     # OSError regarding socket assigment
     {% set tests_to_skip = tests_to_skip + " or test_run_app_preexisting_inet6_socket[pyloop] " %}
     {% set tests_to_skip = tests_to_skip + " or test_handler_cancellation" %}
-    {% set tests_to_skip = tests_to_skip + " or est_no_handler_cancellation" %}
+    {% set tests_to_skip = tests_to_skip + " or test_no_handler_cancellation" %}
+    {% set tests_to_skip = tests_to_skip + " or test_shutdown_pending_handler_responds" %}
+    # would requires package gunicorn
+    {% set tests_to_skip = tests_to_skip + " or test_no_warnings[aiohttp.worker]" %} # [win or s390x]
     # ignore test files due to currently unavailable test dependencies (proxy.py)
     - pytest -k "not ({{ tests_to_skip }})" --ignore=tests/test_proxy_functional.py
 
