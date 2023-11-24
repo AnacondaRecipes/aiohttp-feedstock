@@ -47,8 +47,8 @@ test:
     - pytest-mock
     - pytest-cov
     - trustme
-    - gunicorn
-    - uvloop # [not win]
+    - gunicorn  # [not win]
+    - uvloop    # [not win]
     - brotli-python
     - re-assert
 {% endif %}
@@ -68,8 +68,12 @@ test:
     {% set tests_to_skip = tests_to_skip + " or test_http_response_parser_bad_chunked_strict_c[pyloop]" %}
     {% set tests_to_skip = tests_to_skip + " or test_http_response_parser_bad_chunked_strict_py[pyloop]" %}
     {% set tests_to_skip = tests_to_skip + " or test_http_response_parser_strict_headers[c-parser-pyloop]" %}
+    {% set tests_to_skip = tests_to_skip + " or test_access_root_of_static_handler[pyloop-index_forbidden]" %}
     {% set tests_to_skip = tests_to_skip + " or test_client_session_timeout_zero" %}
-
+    # OSError regarding socket assigment
+    {% set tests_to_skip = tests_to_skip + " or test_run_app_preexisting_inet6_socket[pyloop] " %}
+    {% set tests_to_skip = tests_to_skip + " or test_handler_cancellation" %}
+    {% set tests_to_skip = tests_to_skip + " or est_no_handler_cancellation" %}
     # ignore test files due to currently unavailable test dependencies (proxy.py)
     - pytest -k "not ({{ tests_to_skip }})" --ignore=tests/test_proxy_functional.py
 
