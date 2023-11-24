@@ -47,7 +47,7 @@ test:
     - pytest-mock
     - pytest-cov
     - trustme
-    - gunicorn  # [not win]
+    - gunicorn  # [not (win or s390x)]
     - uvloop    # [not win]
     - brotli-python
     - re-assert
