@@ -51,6 +51,7 @@ test:
     - uvloop    # [not win]
     - brotli-python
     - re-assert
+    - freezegun
 {% endif %}
   commands:
     - pip check
