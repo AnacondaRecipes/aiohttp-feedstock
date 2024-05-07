@@ -1,5 +1,5 @@
 {% set name = "aiohttp" %}
-{% set version = "3.9.3" %}
+{% set version = "3.9.5" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/aiohttp-{{ version }}.tar.gz
-  sha256: 90842933e5d1ff760fae6caca4b2b3edba53ba8f4b71e95dacf2818a2aca06f7
+  sha256: edea7d15772ceeb29db4aff55e482d4bcfb6ae160ce144f2682de02f6d693551
 
 build:
   skip: true  # [py<38]
