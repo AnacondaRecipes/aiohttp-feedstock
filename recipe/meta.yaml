@@ -32,6 +32,8 @@ requirements:
     - frozenlist >=1.1.1
     - multidict >=4.5,<7.0
     - yarl >=1.0,<2.0
+  run_constrained:
+    - aiodns >=3.2.0  # [not win]
 
 test:
   imports:
@@ -44,6 +46,8 @@ test:
   requires:
     - pip
     - pytest <8
+    # flags '--cov=aiohttp --cov=tests/' are hardcoded in file setup.cfg
+    - pytest-cov
     - pytest-mock
     - trustme
     - gunicorn  # [not (win or s390x)]
