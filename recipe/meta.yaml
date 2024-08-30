@@ -75,13 +75,13 @@ test:
     {% set tests_to_skip = tests_to_skip + " or test_handler_cancellation" %}
     {% set tests_to_skip = tests_to_skip + " or test_no_handler_cancellation" %}
     {% set tests_to_skip = tests_to_skip + " or test_shutdown_pending_handler_responds" %}
-    {% set tests_to_skip = tests_to_skip + " or test_keepalive_timeout_sync_sleep" %}  # [linux and s390x]
+    {% set tests_to_skip = tests_to_skip + " or test_keepalive_timeout_sync_sleep or test_keepalive_timeout_async_sleep or test_HTTP_304[pyloop]" %}
     # emulation is too slow for expected speed
     {% set tests_to_skip = tests_to_skip + " or test_import_time" %}  # [linux and x86_64]
     # Permission errors on linux
     {% set tests_to_skip = tests_to_skip + " or test_static_directory_without_read_permission or test_static_file_without_read_permission" %}  # [linux]
     # PytestUnraisableExceptionWarning on s390x
-    {% set tests_to_skip = tests_to_skip + " or test_release_early[pyloop]" %}  # [linux and s390x]
+    {% set tests_to_skip = tests_to_skip + " or test_release_early[pyloop]" %}
     # would requires package gunicorn
     {% set tests_to_skip = tests_to_skip + " or test_no_warnings[aiohttp.worker]" %} # [win or s390x]
     # ignore test files due to currently unavailable test dependencies (proxy.py)
