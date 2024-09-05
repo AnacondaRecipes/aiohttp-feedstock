@@ -1,5 +1,5 @@
 {% set name = "aiohttp" %}
-{% set version = "3.9.5" %}
+{% set version = "3.10.5" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/aiohttp-{{ version }}.tar.gz
-  sha256: edea7d15772ceeb29db4aff55e482d4bcfb6ae160ce144f2682de02f6d693551
+  sha256: f071854b47d39591ce9a17981c46790acb30518e2f83dfca8db2dfa091178691
 
 build:
   skip: true  # [py<38]
@@ -25,12 +25,15 @@ requirements:
     - wheel
   run:
     - python
-    - attrs >=17.3.0
-    - multidict >=4.5,<7.0
-    - async-timeout >=4.0,<5.0  # [py<311]
-    - yarl >=1.0,<2.0
-    - frozenlist >=1.1.1
+    - aiohappyeyeballs >=2.3.0
     - aiosignal >=1.1.2
+    - async-timeout >=4.0,<5.0  # [py<311]
+    - attrs >=17.3.0
+    - frozenlist >=1.1.1
+    - multidict >=4.5,<7.0
+    - yarl >=1.0,<2.0
+  run_constrained:
+    - aiodns >=3.2.0  # [not win]
 
 test:
   imports:
@@ -42,22 +45,18 @@ test:
     - README.rst
   requires:
     - pip
-{% if python != "3.12" %}
-    - pytest
-    - pytest-mock
+    - pytest <8
+    # flags '--cov=aiohttp --cov=tests/' are hardcoded in setup.cfg
     - pytest-cov
+    - pytest-mock
     - trustme
     - gunicorn  # [not (win or s390x)]
     - uvloop    # [not win]
     - brotli-python
     - re-assert
     - freezegun
-{% endif %}
   commands:
     - pip check
-
-{% if python != "3.12" %}
-
     # don't want the docker tests in the autobahn subfolder
     - rm -rf tests/autobahn         # [unix]
     - rmdir /s /q tests\autobahn    # [win]
@@ -76,18 +75,25 @@ test:
     {% set tests_to_skip = tests_to_skip + " or test_handler_cancellation" %}
     {% set tests_to_skip = tests_to_skip + " or test_no_handler_cancellation" %}
     {% set tests_to_skip = tests_to_skip + " or test_shutdown_pending_handler_responds" %}
+    {% set tests_to_skip = tests_to_skip + " or test_keepalive_timeout_sync_sleep or test_keepalive_timeout_async_sleep or test_HTTP_304[pyloop]" %}
+    # CI is too slow for expected speed
+    {% set tests_to_skip = tests_to_skip + " or test_import_time" %}  # [linux]
+    # Permission errors on linux
+    {% set tests_to_skip = tests_to_skip + " or test_static_directory_without_read_permission or test_static_file_without_read_permission" %}  # [linux]
+    # PytestUnraisableExceptionWarning on s390x
+    {% set tests_to_skip = tests_to_skip + " or test_release_early[pyloop]" %}
     # would requires package gunicorn
     {% set tests_to_skip = tests_to_skip + " or test_no_warnings[aiohttp.worker]" %} # [win or s390x]
     # ignore test files due to currently unavailable test dependencies (proxy.py)
     - pytest -k "not ({{ tests_to_skip }})" --ignore=tests/test_proxy_functional.py
 
-{% endif %}
-
 about:
   home: https://github.com/aio-libs/aiohttp
-  license: Apache-2.0
-  license_file: LICENSE.txt
-  license_family: Apache
+  license: MIT AND Apache-2.0
+  license_file:
+    - LICENSE.txt
+    - vendor/llhttp/LICENSE-MIT
+  license_family: Other
   summary: Async http client/server framework (asyncio)
   description: Async http client/server framework (asyncio)
   doc_url: https://docs.aiohttp.org/
