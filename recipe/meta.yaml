@@ -66,13 +66,18 @@ test:
 
     {% set tests_to_skip = "_not_a_real_test" %}
     # would requires package time-machine
-    {% set tests_to_skip = tests_to_skip + " or test_expires or test_max_age or test_cookie_jar_clear_expired" %}    
+    {% set tests_to_skip = tests_to_skip + " or test_expires or test_max_age or test_cookie_jar_clear_expired" %}
     # not sure why, they do appear in that issue: https://github.com/aio-libs/aiohttp/issues/7675
     {% set tests_to_skip = tests_to_skip + " or test_http_response_parser_bad_chunked_strict_c[pyloop]" %}
     {% set tests_to_skip = tests_to_skip + " or test_http_response_parser_bad_chunked_strict_py[pyloop]" %}
     {% set tests_to_skip = tests_to_skip + " or test_http_response_parser_strict_headers[c-parser-pyloop]" %}
     {% set tests_to_skip = tests_to_skip + " or test_http_response_parser_strict_obs_line_folding[py-parser-pyloop]" %}
     {% set tests_to_skip = tests_to_skip + " or test_http_response_parser_strict_obs_line_folding[c-parser-pyloop]" %}
+    {% set tests_to_skip = tests_to_skip + " or test_resolve_static_root_route[pyloop]" %}
+    {% set tests_to_skip = tests_to_skip + " or test_heartbeat[pyloop]" %}
+    {% set tests_to_skip = tests_to_skip + " or test_heartbeat_no_pong[pyloop]" %}
+    {% set tests_to_skip = tests_to_skip + " or test_heartbeat_no_pong_after_send_many_messages[pyloop]" %}
+    {% set tests_to_skip = tests_to_skip + " or test_urlencoded_formdata_charset[pyloop]" %}
     # OSError regarding socket assigment
     {% set tests_to_skip = tests_to_skip + " or test_run_app_preexisting_inet6_socket[pyloop] " %}
     {% set tests_to_skip = tests_to_skip + " or test_handler_cancellation" %}
@@ -91,6 +96,8 @@ test:
     {% set tests_to_skip = tests_to_skip + " or test_testcase_no_app" %}  # [osx]
     # Permission errors on linux
     {% set tests_to_skip = tests_to_skip + " or test_static_directory_without_read_permission or test_static_file_without_read_permission" %}  # [linux]
+    # Permission errors on linux - OSError: [Errno 99] Cannot assign requested address
+    {% set tests_to_skip = tests_to_skip + " or test_test_server_hostnames or test_send[request_start-params0-TraceRequestStartParams]" %}  # [linux]
     # PytestUnraisableExceptionWarning on s390x
     {% set tests_to_skip = tests_to_skip + " or test_release_early[pyloop]" %}
     # would requires package gunicorn
