@@ -1,5 +1,5 @@
 {% set name = "aiohttp" %}
-{% set version = "3.10.5" %}
+{% set version = "3.10.11" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/aiohttp-{{ version }}.tar.gz
-  sha256: f071854b47d39591ce9a17981c46790acb30518e2f83dfca8db2dfa091178691
+  sha256: 9dc2b8f3dcab2e39e0fa309c8da50c3b55e6f34ab25f1a71d3288f24924d33a7
 
 build:
   skip: true  # [py<38]
@@ -27,11 +27,11 @@ requirements:
     - python
     - aiohappyeyeballs >=2.3.0
     - aiosignal >=1.1.2
-    - async-timeout >=4.0,<5.0  # [py<311]
+    - async-timeout >=4.0,<6.0  # [py<311]
     - attrs >=17.3.0
     - frozenlist >=1.1.1
     - multidict >=4.5,<7.0
-    - yarl >=1.0,<2.0
+    - yarl >=1.12.0,<2.0
   run_constrained:
     - aiodns >=3.2.0  # [not win]
 
