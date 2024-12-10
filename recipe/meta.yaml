@@ -49,6 +49,7 @@ test:
     # flags '--cov=aiohttp --cov=tests/' are hardcoded in setup.cfg
     - pytest-cov
     - pytest-mock
+    - pytest-xdist
     - trustme
     - gunicorn  # [not (win or s390x)]
     - uvloop    # [not win]
