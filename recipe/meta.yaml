@@ -50,6 +50,7 @@ test:
     - pytest-cov
     - pytest-mock
     - pytest-xdist
+    - pytest-codspeed
     - trustme
     - gunicorn  # [not (win or s390x)]
     - uvloop    # [not win]
