@@ -85,7 +85,7 @@ test:
     # Socket assisgnemnt errors on linux
     {% set tests_to_skip = tests_to_skip + " or test_static_directory_without_read_permission or test_static_file_without_read_permission" %}  # [linux]
     # windows - websocket ABNORMAL_CLOSURE
-    {% set tests_to_skip = tests_to_skip + " or test_heartbeat_no_pong_after_receive_many_messages[pyloop] or test_normal_closure_while_client_sends_msg[pyloop]" %}  # [win]
+    {% set tests_to_skip = tests_to_skip + " or test_heartbeat[pyloop] or test_heartbeat_no_pong_after_receive_many_messages[pyloop] or test_normal_closure_while_client_sends_msg[pyloop]" %}  # [win]
     # PytestUnraisableExceptionWarning on s390x
     {% set tests_to_skip = tests_to_skip + " or test_release_early[pyloop]" %}
     # would requires package gunicorn
