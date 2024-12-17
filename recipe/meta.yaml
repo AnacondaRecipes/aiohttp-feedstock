@@ -96,7 +96,7 @@ test:
     # ignore test files due to currently unavailable test dependencies (proxy.py)
     # || true because of unstable pyloop tests. (Time sensitive issues on slow CI?)
     - pytest -k "not ({{ tests_to_skip }})" --ignore=tests/test_proxy_functional.py || true  # [not win]
-    - pytest -k "not ({{ tests_to_skip }})" --ignore=tests/test_proxy_functional.py || 1     # [win]
+    - pytest -k "not ({{ tests_to_skip }})" --ignore=tests/test_proxy_functional.py || exit /b 0     # [win]
 
 about:
   home: https://github.com/aio-libs/aiohttp
