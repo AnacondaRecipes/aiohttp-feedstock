@@ -1,5 +1,5 @@
 {% set name = "aiohttp" %}
-{% set version = "3.10.11" %}
+{% set version = "3.11.10" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/aiohttp-{{ version }}.tar.gz
-  sha256: 9dc2b8f3dcab2e39e0fa309c8da50c3b55e6f34ab25f1a71d3288f24924d33a7
+  sha256: b1fc6b45010a8d0ff9e88f9f2418c6fd408c99c211257334aff41597ebece42e
 
 build:
-  skip: true  # [py<38]
+  skip: true  # [py<39]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
@@ -21,7 +21,7 @@ requirements:
     - python
     - pip
     - cython
-    - setuptools
+    - setuptools >=46.4.0
     - wheel
   run:
     - python
@@ -31,7 +31,8 @@ requirements:
     - attrs >=17.3.0
     - frozenlist >=1.1.1
     - multidict >=4.5,<7.0
-    - yarl >=1.12.0,<2.0
+    - propcache >=0.2.0
+    - yarl >=1.17.0,<2.0
   run_constrained:
     - aiodns >=3.2.0  # [not win]
 
@@ -45,7 +46,7 @@ test:
     - README.rst
   requires:
     - pip
-    - pytest <8
+    - pytest
     # flags '--cov=aiohttp --cov=tests/' are hardcoded in setup.cfg
     - pytest-cov
     - pytest-mock
@@ -85,10 +86,20 @@ test:
     {% set tests_to_skip = tests_to_skip + " or test_keepalive_timeout_sync_sleep or test_keepalive_timeout_async_sleep or test_HTTP_304[pyloop]" %}
     # CI is too slow for expected speed
     {% set tests_to_skip = tests_to_skip + " or test_import_time" %}  # [linux]
+    # Pytest terminal summary report not found
+    {% set tests_to_skip = tests_to_skip + " or test___all__" %}  # [osx]
+    {% set tests_to_skip = tests_to_skip + " or test_web___all__" %}  # [osx]
+    {% set tests_to_skip = tests_to_skip + " or test_aiohttp_plugin" %}  # [osx]
+    {% set tests_to_skip = tests_to_skip + " or test_warning_checks" %}  # [osx]
+    {% set tests_to_skip = tests_to_skip + " or test_aiohttp_plugin_async_fixture" %}  # [osx]
+    {% set tests_to_skip = tests_to_skip + " or test_aiohttp_plugin_async_gen_fixture" %}  # [osx]
+    {% set tests_to_skip = tests_to_skip + " or test_testcase_no_app" %}  # [osx]
     # Permission errors on linux
     {% set tests_to_skip = tests_to_skip + " or test_test_server_hostnames[::1-::1] or test_send[request_start-params0-TraceRequestStartParams]" %}  # [linux]
     # Socket assisgnemnt errors on linux
     {% set tests_to_skip = tests_to_skip + " or test_static_directory_without_read_permission or test_static_file_without_read_permission" %}  # [linux]
+    # Permission errors on linux - OSError: [Errno 99] Cannot assign requested address
+    {% set tests_to_skip = tests_to_skip + " or test_test_server_hostnames or test_send[request_start-params0-TraceRequestStartParams]" %}  # [linux]
     # PytestUnraisableExceptionWarning on s390x
     {% set tests_to_skip = tests_to_skip + " or test_release_early[pyloop]" %}
     # would requires package gunicorn
