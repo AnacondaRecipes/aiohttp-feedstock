@@ -1,5 +1,5 @@
 {% set name = "aiohttp" %}
-{% set version = "3.11.10" %}
+{% set version = "3.12.15" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/aiohttp-{{ version }}.tar.gz
-  sha256: b1fc6b45010a8d0ff9e88f9f2418c6fd408c99c211257334aff41597ebece42e
+  sha256: 4fc61385e9c98d72fcdf47e6dd81833f47b2f77c114c29cd64a361be57a763a2
 
 build:
   skip: true  # [py<39]
@@ -53,7 +53,7 @@ test:
     - pytest-xdist
     - pytest-codspeed
     - trustme
-    - gunicorn  # [not (win or s390x)]
+    - gunicorn  # [not win]
     - uvloop    # [not win]
     - brotli-python
     - re-assert
@@ -103,7 +103,7 @@ test:
     # PytestUnraisableExceptionWarning on s390x
     {% set tests_to_skip = tests_to_skip + " or test_release_early[pyloop]" %}
     # would requires package gunicorn
-    {% set tests_to_skip = tests_to_skip + " or test_no_warnings[aiohttp.worker]" %} # [win or s390x]
+    {% set tests_to_skip = tests_to_skip + " or test_no_warnings[aiohttp.worker]" %} # [win]
     # ignore test files due to currently unavailable test dependencies (proxy.py)
     # || true because of unstable pyloop tests. (Time sensitive issues on slow CI?)
     - pytest -k "not ({{ tests_to_skip }})" --ignore=tests/test_proxy_functional.py || true          # [unix]
@@ -111,10 +111,10 @@ test:
 
 about:
   home: https://github.com/aio-libs/aiohttp
-  license: MIT AND Apache-2.0
+  license: Apache-2.0 AND MIT
   license_file:
     - LICENSE.txt
-    - vendor/llhttp/LICENSE-MIT
+    - vendor/llhttp/LICENSE
   license_family: Other
   summary: Async http client/server framework (asyncio)
   description: Async http client/server framework (asyncio)
