@@ -26,8 +26,8 @@ requirements:
     - wheel
   run:
     - python
-    - aiohappyeyeballs >=2.3.0
-    - aiosignal >=1.1.2
+    - aiohappyeyeballs >=2.5.0
+    - aiosignal >=1.4.0
     - async-timeout >=4.0,<6.0  # [py<311]
     - attrs >=17.3.0
     - frozenlist >=1.1.1
@@ -35,7 +35,7 @@ requirements:
     - propcache >=0.2.0
     - yarl >=1.17.0,<2.0
   run_constrained:
-    - aiodns >=3.2.0  # [not win]
+    - aiodns >=3.3.0  # [not win]
 
 test:
   imports:
