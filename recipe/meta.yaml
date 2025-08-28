@@ -34,8 +34,9 @@ requirements:
     - multidict >=4.5,<7.0
     - propcache >=0.2.0
     - yarl >=1.17.0,<2.0
-  run_constrained:
-    - aiodns >=3.3.0  # [not win]
+    # promote to run due to high recommendation from developers
+    # https://github.com/aio-libs/aiohttp/blob/acfc2e6e34e36c5afadc665ac3a6ffb5c1e00234/docs/index.rst#library-installation
+    - aiodns >=3.3.0
 
 test:
   imports:
