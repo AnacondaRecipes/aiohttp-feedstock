@@ -1,13 +1,13 @@
 {% set name = "aiohttp" %}
-{% set version = "3.12.15" %}
+{% set version = "3.13.2" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/aiohttp-{{ version }}.tar.gz
-  sha256: 4fc61385e9c98d72fcdf47e6dd81833f47b2f77c114c29cd64a361be57a763a2
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/aiohttp-{{ version }}.tar.gz
+  sha256: 40176a52c186aefef6eb3cad2cdd30cd06e3afbe88fe8ab2af9c0b90f228daca
 
 build:
   skip: true  # [py<39]
@@ -22,7 +22,8 @@ requirements:
     - python
     - pip
     - cython
-    - setuptools >=46.4.0
+    - pkgconfig
+    - setuptools >=67.0
     - wheel
   run:
     - python
@@ -56,7 +57,7 @@ test:
     - pytest-codspeed
     - trustme
     - gunicorn  # [not win]
-    - uvloop    # [not win]
+    - uvloop  # [not win]
     - brotli-python
     - re-assert
     - freezegun
