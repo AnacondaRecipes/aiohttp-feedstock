@@ -38,7 +38,10 @@ requirements:
     # promote to run due to high recommendation from developers
     # https://github.com/aio-libs/aiohttp/blob/acfc2e6e34e36c5afadc665ac3a6ffb5c1e00234/docs/index.rst#library-installation
     - aiodns >=3.3.0
-
+  run_constrained:
+    - brotli-python >=1.2.0  # [python_impl == cpython] 
+    - brotlicffi >=1.2.0  # [python_impl != cpython]
+    - backports.zstd >=1.0.0 # [py<314]
 test:
   imports:
     - aiohttp
