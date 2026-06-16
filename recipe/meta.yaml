@@ -42,6 +42,7 @@ requirements:
     - brotli-python >=1.2.0  # [python_impl == cpython] 
     - brotlicffi >=1.2.0  # [python_impl != cpython]
     - backports.zstd >=1.0.0 # [py<314]
+    - openssl 3.0
 test:
   imports:
     - aiohttp
