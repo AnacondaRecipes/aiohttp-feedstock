@@ -1,30 +1,30 @@
 {% set name = "aiohttp" %}
-{% set version = "3.13.5" %}
+{% set version = "3.13.1" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name }}
   version: {{ version }}
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/aiohttp-{{ version }}.tar.gz
-  sha256: 9d98cc980ecc96be6eb4c1994ce35d28d8b1f5e5208a23b421187d1209dbb7d1
+  sha256: 4b7ee9c355015813a6aa085170b96ec22315dabc3d866fd77d147927000e9464
 
 build:
-  skip: true  # [py<39]
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  skip: true  # [py<39]
 
 requirements:
   build:
     - {{ stdlib('c') }}
     - {{ compiler('c') }}
   host:
-    - python
     - pip
-    - cython
+    - python
     - pkgconfig
-    - setuptools >=67.0
     - wheel
+    - setuptools >=67.0
+    - cython
   run:
     - python
     - aiohappyeyeballs >=2.5.0
@@ -39,9 +39,9 @@ requirements:
     # https://github.com/aio-libs/aiohttp/blob/acfc2e6e34e36c5afadc665ac3a6ffb5c1e00234/docs/index.rst#library-installation
     - aiodns >=3.3.0
   run_constrained:
-    - brotli-python >=1.2.0  # [python_impl == cpython] 
-    - brotlicffi >=1.2.0  # [python_impl != cpython]
-    - backports.zstd >=1.0.0 # [py<314]
+    - brotli-python >=1.1.0  # [python_impl == cpython]
+    - brotlicffi >=1.1.0  # [python_impl != cpython]
+    - backports.zstd >=0.5.0 # [py<314]
 test:
   imports:
     - aiohttp
