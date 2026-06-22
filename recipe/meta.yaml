@@ -1,5 +1,5 @@
 {% set name = "aiohttp" %}
-{% set version = "3.13.5" %}
+{% set version = "3.14.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/aiohttp-{{ version }}.tar.gz
-  sha256: 9d98cc980ecc96be6eb4c1994ce35d28d8b1f5e5208a23b421187d1209dbb7d1
+  sha256: 307f2cff90a764d329e77040603fa032db89c5c24fdad50c4c15334cba744035
 
 build:
-  skip: true  # [py<39]
+  skip: true  # [py<310]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
@@ -34,6 +34,7 @@ requirements:
     - frozenlist >=1.1.1
     - multidict >=4.5,<7.0
     - propcache >=0.2.0
+    - typing_extensions >=4.4 # [py<313]
     - yarl >=1.17.0,<2.0
     # promote to run due to high recommendation from developers
     # https://github.com/aio-libs/aiohttp/blob/acfc2e6e34e36c5afadc665ac3a6ffb5c1e00234/docs/index.rst#library-installation
