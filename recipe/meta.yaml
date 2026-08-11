@@ -1,5 +1,5 @@
 {% set name = "aiohttp" %}
-{% set version = "3.14.1" %}
+{% set version = "3.14.3" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/aiohttp-{{ version }}.tar.gz
-  sha256: 307f2cff90a764d329e77040603fa032db89c5c24fdad50c4c15334cba744035
+  sha256: 9491196535a88924a60afd5b5f434b5b203b6cc616250878dbdb223a8f7844bc
 
 build:
   skip: true  # [py<310]
@@ -40,7 +40,7 @@ requirements:
     # https://github.com/aio-libs/aiohttp/blob/acfc2e6e34e36c5afadc665ac3a6ffb5c1e00234/docs/index.rst#library-installation
     - aiodns >=3.3.0
   run_constrained:
-    - brotli-python >=1.2.0  # [python_impl == cpython] 
+    - brotli-python >=1.2.0  # [python_impl == cpython]
     - brotlicffi >=1.2.0  # [python_impl != cpython]
     - backports.zstd >=1.0.0 # [py<314]
 test:
