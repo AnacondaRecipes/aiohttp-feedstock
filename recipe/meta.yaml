@@ -12,7 +12,7 @@ source:
 build:
   skip: true  # [py<310]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   build:
@@ -43,6 +43,7 @@ requirements:
     - brotli-python >=1.2.0  # [python_impl == cpython]
     - brotlicffi >=1.2.0  # [python_impl != cpython]
     - backports.zstd >=1.0.0 # [py<314]
+    - openssl 3.0
 test:
   imports:
     - aiohttp
