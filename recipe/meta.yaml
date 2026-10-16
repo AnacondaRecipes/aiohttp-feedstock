@@ -1,5 +1,5 @@
 {% set name = "aiohttp" %}
-{% set version = "3.14.3" %}
+{% set version = "3.14.5" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/aiohttp-{{ version }}.tar.gz
-  sha256: 9491196535a88924a60afd5b5f434b5b203b6cc616250878dbdb223a8f7844bc
+  sha256: 5558a7f5a05af9ecf744af91e5baefc436f93c9333e656c27ec253f9a6bbe178
 
 build:
   skip: true  # [py<310]
@@ -22,9 +22,8 @@ requirements:
     - python
     - pip
     - cython
-    - pkgconfig
-    - setuptools >=67.0
-    - wheel
+    - pkgconfig  # analint: host_section_needs_exact_pinnings  # build tool, not a linked library
+    - setuptools >=77.0
   run:
     - python
     - aiohappyeyeballs >=2.5.0
@@ -32,10 +31,10 @@ requirements:
     - async-timeout >=4.0,<6.0  # [py<311]
     - attrs >=17.3.0
     - frozenlist >=1.1.1
-    - multidict >=4.5,<7.0
+    - multidict >=4.5,<8.0
     - propcache >=0.2.0
     - typing_extensions >=4.4 # [py<313]
-    - yarl >=1.17.0,<2.0
+    - yarl >=1.25.1,<2.0
     # promote to run due to high recommendation from developers
     # https://github.com/aio-libs/aiohttp/blob/acfc2e6e34e36c5afadc665ac3a6ffb5c1e00234/docs/index.rst#library-installation
     - aiodns >=3.3.0
