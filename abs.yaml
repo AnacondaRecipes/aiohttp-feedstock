@@ -6,3 +6,10 @@ build_env_vars:
 # if a linked library is not declared in host.
 build_parameters:
   - "--error-overlinking"
+# Temporary source channels for the py315 run deps that are not on defaults yet.
+# Listed before the appended defaults channel. Drop once those PRs are on main.
+channels:
+  - https://staging.continuum.io/pbp/fs/yarl-feedstock/pr12/065516a
+  - https://staging.continuum.io/pbp/fs/multidict-feedstock/pr14/39c1484
+  - https://staging.continuum.io/pbp/fs/aiohappyeyeballs-feedstock/pr8/6e8ee9e
+  - https://staging.continuum.io/pbp/fs/propcache-feedstock/pr6/311d564
