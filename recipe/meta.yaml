@@ -57,11 +57,12 @@ test:
     - pytest-cov
     - pytest-mock
     - pytest-xdist
-    - pytest-codspeed
+    # No py315 build on pkgs/main; tests importorskip / skipif when absent.
+    - pytest-codspeed  # [py<315]
     - trustme
     - gunicorn  # [not win]
-    - uvloop  # [not win]
-    - brotli-python
+    - uvloop  # [not win and py<315]
+    - brotli-python  # [py<315]
     - re-assert
     - freezegun
   commands:
