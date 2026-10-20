@@ -52,21 +52,15 @@ test:
     - README.rst
   requires:
     - pip
-    # py315: pytest-xdist 3.8.0's only py315 build requires pytest <9.
-    # Uncapped, the solver keeps pytest 9 and falls back to noarch
-    # pytest-xdist 2.5.0, which pulls noarch pytest-forked 1.3.0. That
-    # build's pip metadata requires `py` (no build past py37), so pip
-    # check fails. Unix has no pytest-forked 1.7.5 py315 build; win-64
-    # does, which is why only the unix py315 tests failed. Do not apply
-    # the xdist floor on py<315: those already solve 3.8.0 build 0 with
-    # pytest 9, and build 1 would force a pytest downgrade.
-    - pytest <9  # [py==315]
-    - pytest  # [py<315]
+    # pytest-xdist 3.8.0 build 2 (pytest >=7, no upper bound) is on
+    # defaults for py315. Build 1 still requires pytest <9; the higher
+    # build number wins, so the old py315 cap is no longer needed.
+    # https://github.com/AnacondaRecipes/pytest-xdist-feedstock/pull/10
+    - pytest
     # flags '--cov=aiohttp --cov=tests/' are hardcoded in setup.cfg
     - pytest-cov
     - pytest-mock
-    - pytest-xdist >=3.8  # [py==315]
-    - pytest-xdist  # [py<315]
+    - pytest-xdist
     # No py315 build on pkgs/main; tests importorskip / skipif when absent.
     - pytest-codspeed  # [py<315]
     - trustme
