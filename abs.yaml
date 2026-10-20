@@ -6,10 +6,9 @@ build_env_vars:
 # if a linked library is not declared in host.
 build_parameters:
   - "--error-overlinking"
-# Temporary source channels for the py315 run deps that are not on defaults yet.
-# Listed before the appended defaults channel. Drop once those PRs are on main.
+# propcache 0.5.2 py315 is on defaults for win-64 only. linux-64,
+# linux-aarch64, and osx-arm64 still need the open rebuild:
+# https://github.com/AnacondaRecipes/propcache-feedstock/pull/6
+# Listed before the appended defaults channel. Drop once that PR is on main.
 channels:
-  - https://staging.continuum.io/pbp/fs/yarl-feedstock/pr12/065516a
-  - https://staging.continuum.io/pbp/fs/multidict-feedstock/pr14/39c1484
-  - https://staging.continuum.io/pbp/fs/aiohappyeyeballs-feedstock/pr8/6e8ee9e
   - https://staging.continuum.io/pbp/fs/propcache-feedstock/pr6/311d564
