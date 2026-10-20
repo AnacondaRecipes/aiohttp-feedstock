@@ -6,9 +6,3 @@ build_env_vars:
 # if a linked library is not declared in host.
 build_parameters:
   - "--error-overlinking"
-# propcache 0.5.2 py315 is on defaults for win-64 only. linux-64,
-# linux-aarch64, and osx-arm64 still need the open rebuild:
-# https://github.com/AnacondaRecipes/propcache-feedstock/pull/6
-# Listed before the appended defaults channel. Drop once that PR is on main.
-channels:
-  - https://staging.continuum.io/pbp/fs/propcache-feedstock/pr6/311d564
